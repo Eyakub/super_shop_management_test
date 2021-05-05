@@ -43,6 +43,9 @@ class Product(models.Model):
 
 
 class Order(models.Model):
+    customer_name = models.CharField(max_length=256, null=True)
+    customer_phone = models.CharField(max_length=256, null=True)
+    customer_email = models.CharField(max_length=256, null=True)
     status = models.CharField(max_length=256, 
         choices=OrderStatus.order_status_list, default=OrderStatus.PENDING)
     total = models.DecimalField(max_digits=11, decimal_places=2, blank=True, null=True)

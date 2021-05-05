@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock title %}
+{% block body %}
+<h1>Product</h1>
+<div class="row align-items-end">
+    <div class="col-2 float-end">
+        <button class="btn btn-primary"><i class="fa fa-plus"></i> Add Product</button>
+    </div>
+</div>
+<div class="row mt-5">
+    <div class="col">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>SKU</th>
+                    <th>Category</th>
+                    <th>Unit Price</th>
+                    <th>Current Stock</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.code }}</td>
+                    <td>{{ product.category|title }}</td>
+                    <td>{{ product.unit_price }}</td>
+                    <td>{{ product.current_stock }}</td>
+                    <td>
+                        <button class='btn btn-primary btn-primarylight'><i class="fa fa-trash"></i></button>
+                        <button class='btn btn-primary btn-primarylight'><i class="fa fa-edit"></i></button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock body %}
