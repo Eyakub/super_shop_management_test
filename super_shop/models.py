@@ -39,7 +39,7 @@ class Product(models.Model):
     current_stock = models.IntegerField()
 
     def __str__(self):
-        return f"{self.name}-{self.category}"
+        return f"{self.name}"
 
 
 class Order(models.Model):

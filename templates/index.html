@@ -7,36 +7,67 @@ Home
 
 {% block body %}
 <h1>Super Shop</h1>
-<form method="post" novalidate>
+
+<form method="post" action="" novalidate>
     {% csrf_token %}
+
     <div class="row mb-3">
         <div class="col-6">
             <label for="{{ form.customer_name.label }}">{{ form.customer_name.label }}</label>
             {{ form.customer_name }}
+
+            {% if form.customer_name.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ form.customer_name.errors }}</strong>
+            </div>
+            {% endif %}
+
         </div>
     </div>
     <div class="row mb-3">
         <div class="col-6">
             <label for="{{ form.customer_phone.label }}">{{ form.customer_phone.label }}</label>
             {{ form.customer_phone }}
+            {% if form.customer_phone.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ form.customer_phone.errors }}</strong>
+            </div>
+            {% endif %}
         </div>
     </div>
     <div class="row mb-3">
         <div class="col-6">
             <label for="{{ form.customer_email.label }}">{{ form.customer_email.label }}</label>
             {{ form.customer_email }}
+            {% if form.customer_email.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ form.customer_email.errors }}</strong>
+            </div>
+            {% endif %}
         </div>
     </div>
 
     <div class="row mb-3">
         <div class="col-6">
-            <label for="products">Products</label>
-            <select class="form-select mt-2" name="products" id="products">
-                <option selected>Select product</option>
-                {% for product in products %}
-                <option value="{{ product.id }}">{{ product.name }}</option>
-                {% endfor %}
-            </select>
+            <label for="{{ form.products.label }}">{{ form.products.label }}</label>
+            {{ form.products }}
+            {% if form.products.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ form.products.errors }}</strong>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-6">
+            <label for="{{ form.total_unit.label }}">{{ form.total_unit.label }}</label>
+            {{ form.total_unit }}
+            {% if form.total_unit.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ form.total_unit.errors }}</strong>
+            </div>
+            {% endif %}
         </div>
     </div>
 

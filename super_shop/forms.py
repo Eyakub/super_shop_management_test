@@ -1,19 +1,33 @@
 from django import forms
 
+from .models import Product
+
 
 class CreateOrder(forms.Form):
     customer_name = forms.CharField(max_length=256, 
         label='Customer Name *',
         required=True,
+        error_messages={'required': 'Customer name is required.'},
         widget=forms.TextInput(attrs={'class': "form-control"})
     )
     customer_phone = forms.CharField(max_length=256, 
         label='Customer Phone *',
         required=True,
+        error_messages={'required': 'Customer phone is required.'},
         widget=forms.TextInput(attrs={'class': "form-control"})
     )
     customer_email = forms.CharField(max_length=256, 
         label='Customer Email *',
         required=True,
+        error_messages={'required': 'Customer email is required.'},
         widget=forms.TextInput(attrs={'class': "form-control"})
     )
+
+    products = forms.ModelChoiceField(queryset=Product.objects.all(), 
+        label="Products", required=True,
+        error_messages={'required': 'Please select a product.'},
+        widget=forms.Select(attrs={'class': 'form-control'}))
+
+    total_unit = forms.CharField(required=True,
+        label="Product quantity",
+        widget=forms.TextInput(attrs={'class':'form-control' , 'autocomplete': 'off','pattern':'[0-9]+', 'title':'Enter numbers Only '}))

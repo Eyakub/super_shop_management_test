@@ -6,11 +6,13 @@ from super_shop.models import Product
 
 # Create your views here.
 def index(request):
+    
     form = CreateOrder(request.POST or None)
-
-    products = Product.objects.all()
+    if form.is_valid():
+        print('valid')
+    # products = Product.objects.all()
     ctx = {
-        'products': products,
+        # 'products': products,
         'form': form
     }
     return render(request, template_name='index.html', context=ctx)
