@@ -31,3 +31,7 @@ class CreateOrder(forms.Form):
     total_unit = forms.CharField(required=True,
         label="Product quantity",
         widget=forms.TextInput(attrs={'class':'form-control' , 'autocomplete': 'off','pattern':'[0-9]+', 'title':'Enter numbers Only '}))
+
+    def clean_total_unit(self):
+        total_unit = self.cleaned_data.get('total_unit', None)
+        print('------total unit--->', total_unit)
