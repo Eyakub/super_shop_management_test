@@ -5,14 +5,8 @@ from super_shop.models import Product, Order, OrderLine, OrderStatus
 import datetime
 import qrcode.image.svg
 from io import BytesIO
-import tempfile
 
-from reportlab.graphics import renderPDF
-from reportlab.pdfgen import canvas
 import qrcode
-from svglib.svglib import svg2rlg
-from django.template.loader import get_template
-from xhtml2pdf import pisa
 from django.http import HttpResponse
 
 

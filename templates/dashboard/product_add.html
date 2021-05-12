@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block body %}
-<h1>Product</h1>
+<h1>Product {% if product %} edit {% else %} Add {% endif %}</h1>
 <form method="post" action="" novalidate>
     {% csrf_token %}
 
