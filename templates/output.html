@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %} Output {% endblock title %}
+
+{% block stylecss %}
+<style>
+    @media print {
+        .hidden-print {
+            display: none !important;
+        }
+    }
+</style>
+{% endblock stylecss %}
+
+{% block body %}
+
+<div id="pdf_content">
+    {{ qr_code|safe }}
+    <table class="table">
+        <thead>
+            <th>SL No</th>
+            <th>Item</th>
+            <th>Unit Price</th>
+            <th>QTY</th>
+            <th>Total</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>{{ product.name }}</td>
+                <td>{{ unit_price }}</td>
+                <td>{{ product_quantity }}</td>
+                <td>{{ total }}</td>
+            </tr>
+            <tr>
+                <td colspan="4"><b>Total:</b> </td>
+                <td><b>{{ total }}</b></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<button class="btn btn-primary hidden-print" onclick="window.print()" id="pdf_download">Download</button>
+{% endblock body %}
+
+{% block js %}
+{% endblock js %}

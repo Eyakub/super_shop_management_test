@@ -30,8 +30,13 @@ class CreateOrder(forms.Form):
 
     total_unit = forms.CharField(required=True,
         label="Product quantity",
+        error_messages={'required': 'Please provide at least 1 product.'},
         widget=forms.TextInput(attrs={'class':'form-control' , 'autocomplete': 'off','pattern':'[0-9]+', 'title':'Enter numbers Only '}))
 
     def clean_total_unit(self):
         total_unit = self.cleaned_data.get('total_unit', None)
-        print('------total unit--->', total_unit)
+        selected_product = self.cleaned_data.get('products')
+        if int(total_unit) > selected_product.current_stock:
+            raise forms.ValidationError(
+                f"You can't select more than {selected_product.current_stock} product.")
+        return total_unit
