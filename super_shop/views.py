@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-from super_shop.forms import CreateOrder
+from super_shop.forms import *
 from super_shop.models import Product, Order, OrderLine, OrderStatus
 import datetime
 import qrcode.image.svg
@@ -85,3 +85,30 @@ def dashboard_index(request):
         'products': product_list
     }
     return render(request, template_name='dashboard/index.html', context=ctx)
+
+
+def product_add(request):
+    form = ProductForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('dashboard_index')
+    ctx = {
+        'form': form
+    }
+    return render(request, template_name='dashboard/product_add.html', context=ctx)
+
+
+def product_edit(request, product_id):
+    product = Product.objects.get(id=product_id)
+    form = ProductForm(request.POST or None, instance=product)
+    if form.is_valid():
+        form.save()
+        return redirect('dashboard_index')
+    ctx = {'form': form, 'product': product}
+    return render(request, template_name='dashboard/product_add.html', context=ctx)
+
+
+def product_delete(request, product_id):
+    product = Product.objects.get(id=product_id)
+    product.delete()
+    return redirect('dashboard_index')

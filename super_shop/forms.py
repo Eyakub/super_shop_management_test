@@ -40,3 +40,9 @@ class CreateOrder(forms.Form):
             raise forms.ValidationError(
                 f"You can't select more than {selected_product.current_stock} product.")
         return total_unit
+
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['name', 'code', 'category', 'unit_price', 'current_stock']

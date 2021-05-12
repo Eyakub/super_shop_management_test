@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block body %}
+<h1>Product</h1>
+<form method="post" action="" novalidate>
+    {% csrf_token %}
+
+    <div class="row mb-3 ">
+        <div class="col-6">
+            <label for="{{ form.name.label }}">{{ form.name.label }}</label>
+            {{ form.name }}
+        </div>
+    </div>
+    <div class="row mb-3 ">
+        <div class="col-6">
+            <label for="{{ form.code.label }}">{{ form.code.label }}</label>
+            {{ form.code }}
+        </div>
+    </div>
+    <div class="row mb-3 ">
+        <div class="col-6">
+            <label for="{{ form.category.label }}">{{ form.category.label }}</label>
+            {{ form.category }}
+        </div>
+    </div>
+    <div class="row mb-3 ">
+        <div class="col-6">
+            <label for="{{ form.unit_price.label }}">{{ form.unit_price.label }}</label>
+            {{ form.unit_price }}
+        </div>
+    </div>
+    <div class="row mb-3 ">
+        <div class="col-6">
+            <label for="{{ form.current_stock.label }}">{{ form.current_stock.label }}</label>
+            {{ form.current_stock }}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-4">Create Product</button>
+</form>
+{% endblock body %}
