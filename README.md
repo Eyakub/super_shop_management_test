@@ -10,5 +10,6 @@
     ```
 4. ```base_url/dashboard``` for product CRUD operations
 5. ``` base_url ``` to create an order.
-6. Order create form has to be validated before submit with proper instructions, after creating order. Customer information will be available in QR Code rest will follow the table.
-7. Can generate/download the invoice as PDF following Download button.
+6. Invoice will be generated after creating the order.
+7. Order create form has to be validated before submit with proper instructions, after creating order. Customer information will be available in QR Code rest will follow the table.
+8. Can generate/download the invoice as PDF following Download button.
